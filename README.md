@@ -2,6 +2,8 @@
 
 A new Flutter exemple project for reading id card and passport of algeria using algerianidpassportreaderandroid SDK .
 
+![photo_5895675511457909642_y](https://github.com/user-attachments/assets/8020629c-8e52-48cf-a479-698d805dabd1)
+
 ## Getting Started
 
 1 - connect your real device with your PC 

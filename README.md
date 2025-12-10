@@ -1,8 +1,15 @@
-# aaaa_project
+# algerianidpassportreader_flutter_example
 
-A new Flutter project.
+A new Flutter project.for reading id card and passport of algeria using mrz + nfc .
 
 ## Getting Started
+
+1 - connect your real device 
+
+2 - run this commandes :
+
+- flutter pub get
+- flutter run
 
 This project is a starting point for a Flutter application.
 

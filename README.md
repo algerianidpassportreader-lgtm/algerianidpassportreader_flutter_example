@@ -6,6 +6,8 @@ A new Flutter exemple project for reading id card and passport of algeria using 
 
 ## Getting Started
 
+1 - go to lib/constants/ and enter your userToken  
+
 1 - connect your real device with your PC 
 
 2 - run this commandes :

@@ -364,8 +364,8 @@ class _NfcScreenState extends State<NfcScreen> {
                         passportData!['documentNumber'],
                       ),
                       _buildDataItem(
-                        'Document Type',
-                        passportData!['documentType'],
+                        'Document Code',
+                        passportData!['documentCode'],
                       ),
                       _buildDataItem(
                         'Issuing State',

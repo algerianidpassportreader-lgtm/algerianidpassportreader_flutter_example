@@ -21,7 +21,8 @@ class AlgerianIdSdk {
   // NEW initialize - requires token
   static Future<bool> initializeWithToken() async {
     try {
-      ;
+      // to listen to android update
+      _setupMethodHandler();
       final result = await _channel.invokeMethod('initializeWithToken', {
         'userToken': Constants.userToken,
       });
@@ -32,6 +33,82 @@ class AlgerianIdSdk {
       return false;
     }
   }
+
+   // Set up the method call handler to receive events from Android
+  static void _setupMethodHandler() {
+    _channel.setMethodCallHandler((MethodCall call) async {
+      print('Received from Android: ${call.method}');
+      print('Arguments: ${call.arguments}');
+
+      switch (call.method) {
+        case 'onNFCSessionStart':
+          print('NFC Session Started');
+          if (onNFCSessionStart != null) {
+            onNFCSessionStart!();
+          }
+          break;
+
+        case 'onNFCSessionFinish':
+          print('NFC Session Finished');
+          if (onNFCSessionFinish != null) {
+            onNFCSessionFinish!();
+          }
+          break;
+
+        case 'onPassportDataRead':
+          print('Passport Data Received!');
+          final data = call.arguments as Map<dynamic, dynamic>;
+  
+          if (onPassportDataRead != null) {
+            onPassportDataRead!(data);
+          }
+          break;
+
+        case 'onNFCError':
+          print('NFC Error: ${call.arguments}');
+          if (onNFCError != null) {
+            onNFCError!(call.arguments.toString());
+          }
+          break;
+
+        case 'onAccessDenied':
+          print('Access Denied: ${call.arguments}');
+          if (onAccessDenied != null) {
+            onAccessDenied!(call.arguments.toString());
+          }
+          break;
+
+        case 'onBACDenied':
+          print('BAC Denied: ${call.arguments}');
+          if (onBACDenied != null) {
+            onBACDenied!(call.arguments.toString());
+          }
+          break;
+
+        case 'onPACEError':
+          print('PACE Error: ${call.arguments}');
+          if (onPACEError != null) {
+            onPACEError!(call.arguments.toString());
+          }
+          break;
+
+        case 'onCardError':
+          print('Card Error: ${call.arguments}');
+          if (onCardError != null) {
+            onCardError!(call.arguments.toString());
+          }
+          break;
+
+        default:
+          print('Unknown method: ${call.method}');
+      }
+
+      return null;
+    });
+
+    print('✅ AlgerianIdSdk method handler initialized');
+  }
+
 
   static Future<String> getVersion() async {
     return await _channel.invokeMethod('getVersion');
